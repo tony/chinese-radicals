@@ -1,0 +1,21 @@
+{
+  "name": "chinese-radicals-app",
+  "version": "0.1.0",
+  "main": "app.js",
+  "directory": "./app/",
+  "description": "web app for building tmuxp config files",
+  "license": "BSD",
+  "dependencies": {
+    "jquery": "latest",
+    "lodash": "latest",
+    "almond": "latest",
+    "requirejs": "latest",
+    "backbone-amd": "latest",
+    "backbone.marionette": "latest",
+    "backbone.wreqr": "latest",
+    "backbone.babysitter": "latest",
+    "backbone.marionette.handlebars": "latest",
+    "handlebars": "latest",
+    "isotope": "latest"
+  }
+}
