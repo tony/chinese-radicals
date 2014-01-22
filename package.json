@@ -1,0 +1,25 @@
+{
+  "name": "chinese-radicals",
+  "version": "0.1.0",
+  "main": "./app",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tony/chinese-radicals.git"
+  },
+  "devDependencies": {
+    "grunt": "",
+    "grunt-express-server": "",
+    "grunt-concurrent": "",
+    "grunt-nodemon": "",
+    "grunt-hub": "",
+    "express": "",
+    "consolidate": "",
+    "hogan.js": "",
+    "lodash": "",
+    "grunt-contrib-requirejs": "",
+    "grunt-contrib-jshint": "",
+    "grunt-contrib-watch": "",
+    "grunt-contrib-less": "",
+    "grunt-recess": ""
+  }
+}
