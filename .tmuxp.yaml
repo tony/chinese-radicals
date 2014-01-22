@@ -1,0 +1,18 @@
+session_name: chinese-radicals
+start_directory: ./
+windows:
+- window_name: chinese-radicals
+  layout: main-horizontal
+  options:
+    main-pane-height: 30
+  shell_command_before: 
+    - '[ -d ./node_modules ] || npm install'
+    - '[ -d ./app/bower_components ] || cd ./app; bower install;'
+  panes:
+  - shell_command: 
+    - vim
+    focus: true
+  - shell_command: 
+    - grunt
+  - shell_command: 
+    - pane
