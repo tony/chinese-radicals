@@ -1,19 +1,16 @@
 require.config({
   baseUrl: '/media/',
+  deps: ['backbone.marionette.handlebars'],
   paths: {
     app: 'app',
     tpl: 'tpl',
     'underscore': 'bower_components/lodash/dist/lodash',
     'backbone': 'bower_components/backbone-amd/backbone',
-    'backbone-all': 'lib/backbone-all',
-    'backbone.noConflict': 'lib/backbone.noConflict',
-    'backbone.marionette': 'bower_components/backbone.marionette/lib/core/amd/backbone.marionette',
     'backbone.wreqr': 'bower_components/backbone.wreqr/lib/amd/backbone.wreqr',
     'backbone.babysitter': 'bower_components/backbone.babysitter/lib/amd/backbone.babysitter',
-    'backbone.iobind': 'vendor/backbone.iobind',
-    'backbone.iosync': 'vendor/backbone.iosync',
+    'backbone.marionette': 'bower_components/backbone.marionette/lib/core/amd/backbone.marionette',
     'mustache': 'bower_components/mustache/mustache',
-    'handlebars': 'bower_components/handlebars/handlebars.amd',
+    'handlebars': 'bower_components/handlebars/handlebars.runtime.amd',
     'jquery': 'bower_components/jquery/jquery',
     'bootstrap': 'vendor/bootstrap/docs/assets/js/bootstrap.min',
     'text': 'bower_components/text/text',
@@ -27,20 +24,25 @@ require.config({
 });
 
 
-require(['underscore', 'jquery', 'backbone', 'backbone.marionette', 'handlebars'], function(_, $, Backbone, BackboneMarionette, Handlebars) {
-  var currentdate = new Date(); 
-  var datetime = "Last Sync: " + currentdate.getDate() + "/"
-                  + (currentdate.getMonth()+1)  + "/" 
-                  + currentdate.getFullYear() + " @ "  
-                  + currentdate.getHours() + ":"  
-                  + currentdate.getMinutes() + ":" 
-                  + currentdate.getSeconds();
-  console.log('Loaded. Current time is ' + datetime);
+
+require(['underscore', 'jquery', 'backbone', 'backbone.marionette', 'mustache'], function(_, $, Backbone, Marionette, Mustache) {
+  'use strict';
+
+  //For todays date;
+  Date.prototype.today = function(){ 
+    return ((this.getDate() < 10)?"0":"") + this.getDate() +"/"+(((this.getMonth()+1) < 10)?"0":"") + (this.getMonth()+1) +"/"+ this.getFullYear();
+  };
+  //For the time now
+  Date.prototype.timeNow = function(){
+    return ((this.getHours() < 10)?"0":"") + this.getHours() +":"+ ((this.getMinutes() < 10)?"0":"") + this.getMinutes() +":"+ ((this.getSeconds() < 10)?"0":"") + this.getSeconds();
+  };
+  console.log('Loaded. Current time is ' + new Date().timeNow());
 
   var myexampletpl = "hey hahaa";
-  // Backbone.Marionette.TemplateCache.prototype.compileTemplate = function(rawTemplate) {
-    // return Handlebars.compile(rawTemplate);
-  // };
+
+  Backbone.Marionette.Renderer.render = function(template, data) {
+    return Mustache.render(template, data)
+  };
 
   var App = new Backbone.Marionette.Application();
 
@@ -56,8 +58,8 @@ require(['underscore', 'jquery', 'backbone', 'backbone.marionette', 'handlebars'
     name: 'Tony'                            
   });
 
-  var TonyView = BackboneMarionette.ItemView.extend({
-    template: _.template('Hi world, my name is <input id="wat" type="text" name="names" value="<%= name %>"/>.'),
+  var TonyView = Backbone.Marionette.ItemView.extend({
+    template: 'Hi world, my name is <input id="wat" type="text" name="names" value="{{name}}"/>. {{name}}',
 
     events: {
       'change input#wat': 'changedInput',

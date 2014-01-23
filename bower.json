@@ -15,7 +15,7 @@
     "backbone.wreqr": "latest",
     "backbone.babysitter": "latest",
     "backbone.marionette.handlebars": "latest",
-    "handlebars": "latest",
+    "mustache": "latest",
     "isotope": "latest"
   }
 }
