@@ -41,7 +41,7 @@ require(['underscore', 'jquery', 'backbone', 'backbone.marionette', 'mustache'],
   var myexampletpl = "hey hahaa";
 
   Backbone.Marionette.Renderer.render = function(template, data) {
-    return Mustache.render(template, data)
+    return Mustache.render(template, data);
   };
 
   var App = new Backbone.Marionette.Application();
@@ -80,3 +80,8 @@ require(['underscore', 'jquery', 'backbone', 'backbone.marionette', 'mustache'],
   App.start();
 
 });
+
+
+var radicals = [{
+
+}];
